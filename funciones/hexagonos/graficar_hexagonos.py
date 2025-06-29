@@ -30,23 +30,7 @@ def coordenadas_vecinos(coorX, coorY, radio):
 
 def graficar_malla_hexagonal(radio=1):
     """
-    Grafica la malla de 7 hexágonos: uno central y seis vecinos.
+    Devuelve los centros de los hexágonos.
     """
-    fig, ax = plt.subplots()
-    ax.set_aspect('equal')
-
     centros = [(0, 0)] + coordenadas_vecinos(0, 0, radio)
-
-    for (coorX, coorY) in centros:
-        x, y = obtener_vertices_hexagono(coorX, coorY, radio)
-        ax.plot(x, y, 'k')  # línea negra
-        ax.fill(x, y, alpha=0.2)  # relleno claro
-        ax.text(coorX, coorY, f'({round(coorX,2)}, {round(coorY,2)})', ha='center', va='center', fontsize=8)
-
-    ax.set_title("Malla de 7 Hexágonos (Flat-top)")
-    ax.grid(True)
-    plt.xlabel("X")
-    plt.ylabel("Y")
-    plt.show()
-
     return centros  # Coordenadas centrales de los 7 hexágonos

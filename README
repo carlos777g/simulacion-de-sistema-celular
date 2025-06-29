@@ -1,0 +1,36 @@
+<h1 align="center">Simulación de sistemas celulares en Pyhton</h1>
+
+<p align="center">
+  <b>Un proyecto Python con dependencias manejadas por requirements.txt</b>
+</p>
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Python-3.6+-blue.svg" alt="Python version">
+  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
+</div>
+
+---
+
+## 📋 Requisitos Previos
+- pip (generalmente viene con Python)
+- git (opcional, solo si clonas el repositorio)
+
+## 🚀 Configuración del Entorno
+
+1. **Clona el repositorio** (si aplica):
+   ```bash
+   git clone https://github.com/carlos777g/simulacion-de-sistema-celular.git
+   cd simulacion-de-sistema-celular
+2. **Crea un entorno virtual (recomendado)**
+# Para Windows
+python -m venv venv
+venv\Scripts\activate
+
+# Para Linux/MacOS
+python3 -m venv venv
+source venv/bin/activate
+3. **Instala las dependecias**
+>> pip install -r requirements.txt
+
+4. **Ejecución del proyecto**
+>> python main.py

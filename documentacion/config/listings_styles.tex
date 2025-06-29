@@ -1,0 +1,68 @@
+% --- Carga colores si no están en paquetes.tex ---
+\input{config/colores.tex}
+
+% --- Estilo común (basado en VSCode Dark) ---
+\lstdefinestyle{vsDarkStyle}{
+    backgroundcolor=\color{vsBackground},
+    basicstyle=\ttfamily\color{vsText}\small,
+    keywordstyle=\color{vsKeyword},
+    commentstyle=\color{vsComment},
+    stringstyle=\color{vsString},
+    numberstyle=\color{vsLineNumbers},
+    showstringspaces=false,
+    numbers=left,
+    frame=none,
+    breaklines=true,
+    tabsize=4,
+    xleftmargin=15pt,
+    escapeinside={(*@}{@*)},
+    literate= % Caracteres especiales (¡, ñ, etc.)
+      {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+      {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+      {ñ}{{\~n}}1 {Ñ}{{\~N}}1
+      {¡}{{!`}}1  {¿}{{?`}}1
+      {"}{{\textquotedbl}}1
+      {°}{{\textdegree}}1
+      {|}{{\textbar}}1
+      {~}{{\textasciitilde}}1,
+}
+
+
+% --- Lenguajes ---
+
+\lstdefinelanguage{C}{
+    style=vsDarkStyle,
+    morekeywords={int, float, double, char, bool, true, false, NULL, sizeof, const, struct, typedef},
+    morecomment=[l]{//},       % Comentarios de una línea
+    morecomment=[s]{/*}{*/},   % Comentarios multilínea
+    morestring=[b]{"},         % Strings entre comillas
+    sensitive=true,            % Distingue mayúsculas/minúsculas
+}
+
+\lstdefinelanguage{JavaScript}{
+    style=vsDarkStyle,
+    morekeywords={let, const, var, function, if, else, for, while, return, class, import, export, console, async, await},
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]{"},         % Strings con "
+    morestring=[b]{'},         % Strings con '
+    sensitive=true,
+}
+
+\lstdefinelanguage{Python}{
+    style=vsDarkStyle,
+    morekeywords={def, class, lambda, with, yield, try, except, import, from, as, self, None, True, False},
+    morecomment=[l]{\#},       % Comentarios con #
+    morestring=[b]{"},         % Strings con "
+    morestring=[b]{'},         % Strings con '
+    morestring=[s]{"""}{"""},  % Docstrings
+    sensitive=true,
+}
+
+\lstdefinelanguage{MATLAB}{
+    style=vsDarkStyle,
+    morekeywords={function, end, if, else, elseif, for, while, switch, case, otherwise, try, catch, classdef, properties, methods},
+    morecomment=[l]{\%},       % Comentarios con %
+    morestring=[b]{'},         % Strings con '
+    sensitive=false,           % MATLAB no distingue mayúsculas/minúsculas en keywords
+}

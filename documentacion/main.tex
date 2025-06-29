@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}
+\input{./config/paquetes.tex}       % Carga paquetes
+\input{./config/listings_styles.tex} % Carga configs de código
+\pgfplotsset{compat=1.18} % Set pgfplots compatibility mode
+
+% ===== Variables editables =====
+\newcommand{\materia}{Nombre de la materia}       % Nombre de la materia
+\newcommand{\titulo}{Título del trabajo} % Título del trabajo
+\newcommand{\profesor}{Nombre del Profesor}            % Nombre del profesor
+\newcommand{\alumno}{Guillén González Carlos Jael}             % Nombre del alumno
+\newcommand{\grupo}{Grupo}
+\newcommand{\fecha}{Fecha-entrega}                  % Fecha (puede ser manual: "1 de mayo de 2024")
+
+
+\begin{document}
+\input{portada/portada.tex}
+
+\tableofcontents
+\clearpage
+
+\input{secciones/planteamiento-del-problema.tex}
+\clearpage
+\input{secciones/objetivos.tex}
+
+\section{\LARGE Introducción}
+
+\section{\LARGE Desarrollo}
+\subsection{Ejercicio 1}
+
+\section{\LARGE Conclusión}
+
+\clearpage
+% bibliografía:
+\printbibliography
+
+\end{document}

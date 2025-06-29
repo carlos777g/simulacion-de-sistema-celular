@@ -1,0 +1,20 @@
+## LaTeX ##
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.pdf
+*.bbl
+*.blg
+*.lof
+*.lot
+main-blx.bib
+*.xml
+## Editor/IDE ##
+.vscode/
+.idea/
+
+__pycache__

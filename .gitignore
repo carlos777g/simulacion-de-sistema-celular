@@ -16,5 +16,5 @@ main-blx.bib
 ## Editor/IDE ##
 .vscode/
 .idea/
-
+.conda
 __pycache__

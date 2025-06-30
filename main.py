@@ -17,7 +17,7 @@ Gr_dB = 3
 alpha = 2.8
 sigma = 7
 altura_BS= 19.7
-numUsuarios = 10
+numUsuarios = 100
 radio_hex = 400
 apotema = radio_hex * (np.sqrt(3)/2)
 radio_circulo = np.sqrt((np.power(apotema*3,2))+(np.power(radio_hex/2,2)))
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     # Para cada usuario, obtener la pérdida con cada BS
     matriz_potencias = []
 
-    for distancias_usuario in calcular_distancias_reales(usuarios, centros_celdas, altura_bs=15):
+    for distancias_usuario in calcular_distancias_reales(usuarios, centros_celdas, altura_BS):
         # distancias_usuario = lista de 7 dicts (una por BS)
         potencias = model_lognormal(distancias_usuario, Pt_dBm, Gt_dB, Gr_dB, alpha, sigma)
         matriz_potencias.append(potencias)

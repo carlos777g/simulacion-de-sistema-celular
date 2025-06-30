@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import json
 
 from funciones.hexagonos.graficar_hexagonos import graficar_malla_hexagonal, obtener_vertices_hexagono
 from funciones.usuarios.generar_usuarios import generar_usuarios_uniformes_en_circulo, graficar_usuarios
@@ -76,6 +77,29 @@ if __name__ == "__main__":
             f"Eficiencia espectral= {res['eficiencia']:.3f} "
               f"Tasa = {res['tasa_bps'] / 1e6:.2f} Mbps")
     
+    # Guardar en JSON
+    # Extraer solo los usuarios asociados a BS1 (índice 0)
+    usuarios_bs1 = []
+    for i, bs in enumerate(asignaciones):
+        if bs == 0:  # BS1 tiene índice 0
+            datos = {
+                "usuario_id": i + 1,
+                "x": usuarios[i][0],
+                "y": usuarios[i][1],
+                "loss_d": matriz_potencias[i][0]["loss_d"],
+                "shadowing": matriz_potencias[i][0]["shadowing"],
+                "Pr_log": matriz_potencias[i][0]["Pr_log"],
+                "SIR_dB": sirs[i]
+            }
+            usuarios_bs1.append(datos)
+
+    # Guardar en JSON
+    with open("usuarios_bs1_k1.json", "w") as f:
+        json.dump(usuarios_bs1, f, indent=4)
+
+    print(f"\nSe guardaron {len(usuarios_bs1)} usuarios asociados a BS1 en 'usuarios_bs1_k1.json'")
+
+
     # Graficando celdas y usuarios
     fig, ax = plt.subplots()
     ax.set_aspect('equal')

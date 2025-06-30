@@ -73,7 +73,7 @@ if __name__ == "__main__":
     for i, res in enumerate(resultados_cqi):
         print(f"Usuario {i+1}: SIR = {res['SIR_dB']:.2f} dB, "
             f"CQI = {res['CQI']}, "
-            f"Eficiencia = {res['eficiencia']:.3f} bits/Hz, "
+            f"Eficiencia espectral= {res['eficiencia']:.3f} "
               f"Tasa = {res['tasa_bps'] / 1e6:.2f} Mbps")
     
     # Graficando celdas y usuarios

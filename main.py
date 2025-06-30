@@ -52,7 +52,7 @@ if __name__ == "__main__":
     asignaciones = []  # Lista de índices de BS asignado para cada usuario
 
     for potencias_usuario in matriz_potencias:
-        mejor_idx = np.argmax([bs["Pr_log"] for bs in potencias_usuario])
+        mejor_idx = np.argmin([bs["loss_d"] for bs in potencias_usuario])
         asignaciones.append(mejor_idx)
     
     print("Asignaciones", asignaciones)

@@ -14,7 +14,7 @@ Gr_dB = 3
 alpha = 2.8
 sigma = 7
 altura_BS= 19.7
-numUsuarios = 100
+numUsuarios = 10
 radio_hex = 400
 apotema = radio_hex * (np.sqrt(3)/2)
 radio_circulo = np.sqrt((np.power(apotema*3,2))+(np.power(radio_hex/2,2)))
@@ -54,13 +54,8 @@ if __name__ == "__main__":
     for potencias_usuario in matriz_potencias:
         mejor_idx = np.argmax([bs["Pr_log"] for bs in potencias_usuario])
         asignaciones.append(mejor_idx)
-
-    colores_bs = ['red', 'green', 'blue', 'orange', 'purple', 'cyan', 'magenta']
-    usuarios_por_bs = {i: [] for i in range(7)}  # 7 BS
-
-    for i, usuario in enumerate(usuarios):
-        bs_idx = asignaciones[i]
-        usuarios_por_bs[bs_idx].append(usuario)
+    
+    print("Asignaciones", asignaciones)
 
     # Graficamos todo
     fig, ax = plt.subplots()

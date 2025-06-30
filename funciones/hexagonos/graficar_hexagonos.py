@@ -34,3 +34,25 @@ def graficar_malla_hexagonal(radio=1):
     """
     centros = [(0, 0)] + coordenadas_vecinos(0, 0, radio)
     return centros  # Coordenadas centrales de los 7 hexágonos
+
+# Para k=3:
+# funciones/hexagonos/centros_k3.py
+
+def coordenadas_centros_k3(radio):
+    """
+    Devuelve las coordenadas del centro y las 6 BS con reutilización K=3,
+    es decir, separadas 3*R en 6 direcciones (flat-top).
+    """
+    R = radio
+    D = 3 * R  # Separación entre BS reutilizadas
+
+    # Direcciones flat-top (ángulos a 60°)
+    angulos = np.radians([0, 60, 120, 180, 240, 300])
+    centros = [(0, 0)]  # Centro principal
+
+    for ang in angulos:
+        dx = D * np.sqrt(3) * np.cos(ang)
+        dy = D * np.sqrt(3) * np.sin(ang)
+        centros.append((dx, dy))
+
+    return centros

@@ -14,7 +14,7 @@ Gr_dB = 3
 alpha = 2.8
 sigma = 7
 altura_BS= 19.7
-numUsuarios = 10
+numUsuarios = 100
 radio_hex = 400
 apotema = radio_hex * (np.sqrt(3)/2)
 radio_circulo = np.sqrt((np.power(apotema*3,2))+(np.power(radio_hex/2,2)))
@@ -49,11 +49,18 @@ if __name__ == "__main__":
     # Cada entrada de matriz_potencias[i] es una lista con las potencias recibidas
     # del usuario i desde cada BS
 
-    asignaciones = []  # Lista de índices de BS para cada usuario
+    asignaciones = []  # Lista de índices de BS asignado para cada usuario
 
     for potencias_usuario in matriz_potencias:
         mejor_idx = np.argmax([bs["Pr_log"] for bs in potencias_usuario])
         asignaciones.append(mejor_idx)
+
+    colores_bs = ['red', 'green', 'blue', 'orange', 'purple', 'cyan', 'magenta']
+    usuarios_por_bs = {i: [] for i in range(7)}  # 7 BS
+
+    for i, usuario in enumerate(usuarios):
+        bs_idx = asignaciones[i]
+        usuarios_por_bs[bs_idx].append(usuario)
 
     # Graficamos todo
     fig, ax = plt.subplots()
@@ -62,12 +69,16 @@ if __name__ == "__main__":
     for idx, (cx, cy) in enumerate(centros_celdas):
         x, y = obtener_vertices_hexagono(cx, cy, radio_hex)
         ax.plot(x, y, 'k')
-        ax.fill(x, y, alpha=0.2)
+        # ax.fill(x, y, alpha=0.2) Esto para rellenar de color cada celda
         ax.text(cx, cy, f"BS {idx+1}", ha='center', va='center', fontsize=9, color='blue', fontweight='bold')
-    graficar_usuarios(ax, usuarios)
-
-    ax.set_title("Usuarios distribuidos uniformemente alrededor de la malla hexagonal")
-    ax.legend()
+    
+    for i, (x, y) in enumerate(usuarios):
+        bs_idx = asignaciones[i]  # Índice de la BS asignada
+        ax.text(x, y, str(bs_idx + 1), fontsize=8, color='black', ha='center', va='center')
+    
+    # graficar_usuarios(ax, usuarios) # Descomentar esto para ver los puntos usuario más claros
+    ax.set_title(f"Asociación de usuarios a su mejor estación base ({numUsuarios} usuarios)")
+    # ax.legend(title="Usuarios conectados a:")
     ax.grid(True)
     plt.xlabel("X")
     plt.ylabel("Y")

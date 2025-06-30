@@ -1,0 +1,83 @@
+#### Para citas:
+para algunos ejemplos de esto son \cite{qapla2023}:
+
+#### Para imagenes:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{./img/logo-ipn.png} % Ajusta el ancho
+    \caption{Descripción breve de la imagen.}
+    \label{fig:ejemplo}
+\end{figure}
+
+
+
+
+####Para lenguajes:
+
+\begin{lstlisting}[language=C, caption={Ejemplo en C: Fibonacci iterativo}]
+    #include <stdio.h>
+    
+    int fibonacci(int n) {
+        int a = 0, b = 1, c;
+        for (int i = 0; i < n; i++) {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+        return a;
+    }
+    
+    int main() {
+        printf("Fibonacci(5) = %d\n", fibonacci(5)); /* Comentario */
+        return 0;
+    }
+\end{lstlisting}
+=====================================
+\begin{lstlisting}[language=JavaScript, caption={Ejemplo en JS: Fetch API}]
+    async function fetchData(url) {
+        try {
+            const response = await fetch(url); // Comentario línea
+            const data = await response.json();
+            console.log(`Datos recibidos: ${data.length} items`);
+            return data;
+        } catch (error) {
+            console.error("¡Error!", error.message);
+        }
+    }
+
+    /* Comentario multilínea:
+        Uso básico */
+    fetchData("https://api.example.com/data");
+\end{lstlisting}
+
+===========================================
+\begin{lstlisting}[language=Python, caption={Ejemplo en Python: Clases}]
+    class Animal:
+        def __init__(self, nombre: str):
+            self.nombre = nombre  # Atributo
+        
+        def hablar(self) -> str:
+            raise NotImplementedError("Método abstracto")
+    
+    class Perro(Animal):
+        def hablar(self):
+            return f"{self.nombre} dice: ¡Guau!"  # f-string
+    
+    mi_perro = Perro("Fido")
+    print(mi_perro.hablar())
+\end{lstlisting}
+
+=========================================
+\begin{lstlisting}[language=MATLAB, caption={Ejemplo en MATLAB: Procesamiento de señal}]
+    function [y, t] = generar_seno(frec, Fs, duracion)
+        % Genera una señal senoidal
+        % frec: frecuencia (Hz), Fs: tasa de muestreo
+        t = 0:1/Fs:duracion;
+        y = sin(2 * pi * frec * t);
+        
+        % Graficar
+        figure;
+        plot(t, y);
+        title('Señal senoidal'); % String con '
+    end
+\end{lstlisting}

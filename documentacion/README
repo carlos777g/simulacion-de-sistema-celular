@@ -1,0 +1,34 @@
+# 📝 Plantilla de Reportes en LaTeX
+Plantilla modular para reportes académicos/profesionales en LaTeX con configuración para IPN/UPIITA y soporte para múltiples lenguajes de programación.
+
+## 🌟 Características
+
+- **Portada personalizable** con logos del IPN/UPIITA
+- **Soporte para código** (Python, C++, MATLAB, etc.) con estilo VSCode Dark
+- 📚 **Estructura modular**: Separa portadas, secciones y configuraciones
+
+## 🛠️ Estructura del Proyecto
+.
+├── main.tex # Archivo principal
+├── config/ # Librerias y configuraciones iniciales
+│ ├── paquetes.tex # Paquetes esenciales
+│ ├── colores.tex # Paleta de colores
+│ └── listings_styles.tex # Estilos para código
+├── portada/
+│ └── portada.tex # Portada con variables
+├── secciones/ # Contenido modular (Crea tus propias secciones)
+│ ├── introduccion.tex
+│ └── desarrollo.tex
+├── img/ # Imágenes/gráficas
+└── .gitignore # Archivos excluidos
+
+
+## Cómo Usar
+
+1. **Clonar el repositorio**:
+   ```bash
+   git clone https://github.com/tuusuario/mi_repositorio.git
+
+2. **Tener instalado LaTeX y editar archivo main.tex**
+
+

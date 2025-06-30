@@ -1,0 +1,58 @@
+\section{\Large Introducción}
+En los sistemas celulares, el área de cobertura se divide en celdas, típicamente representadas como hexágonos regulares. Cada celda contiene una estación base que proporciona servicio a los usuarios dentro de su área. Dado que el espectro de frecuencias es limitado, se reutilizan frecuencias en celdas alejadas según un factor de reuso k.
+
+Los sistemas celulares modernos son la base de las redes de telecomunicaciones móviles. Su arquitectura se basa en una división geográfica del área de cobertura en regiones llamadas \textbf{celdas}, cada una de las cuales es atendida por una \textbf{estación base (BS)}.
+
+La forma hexagonal es la más utilizada en modelos teóricos por su eficiencia geométrica, permitiendo una cobertura continua y uniforme sin traslapes ni huecos.
+
+Dado que el espectro radioeléctrico es limitado, las frecuencias deben reutilizarse en celdas no adyacentes. Este mecanismo de reutilización está regido por el \textbf{factor de reuso} \( k \), que determina la distancia mínima necesaria entre dos celdas que usan el mismo canal de frecuencia.
+
+\subsection*{Modelo Lognormal de Propagación}
+
+Este modelo considera que la pérdida total \( L \) en decibelios (dB) está compuesta por una pérdida determinística debido a la distancia y una componente aleatoria gaussiana:
+
+\[
+L = L_0 + 10 \alpha \log_{10} \left( \frac{d}{d_0} \right) + X_\sigma
+\]
+
+Donde:
+\begin{itemize}
+    \item \( L_0 \): pérdida a distancia de referencia \( d_0 \)
+    \item \( \alpha \): es el exponente de pérdida que caracteriza el entorno. En zonas urbanas, su valor comúnmente oscila entre 2.5 y 4.0. (en esta práctica, \( \alpha = 2.8 \))
+    \item \( d \): distancia entre la BS y el usuario
+    \item \( X_\sigma \): componente aleatoria (ensombrecimiento), con \( \sigma = 7 \) dB
+\end{itemize}
+
+Este modelo captura de manera realista las variaciones espaciales de la señal, permitiendo simular escenarios más cercanos a una red real.
+
+\subsection*{Asociación de usuarios a Estación Base}
+
+Dado un conjunto de usuarios distribuidos aleatoriamente en el área de cobertura, el proceso de asociación consiste en asignar a cada usuario la BS con la menor pérdida total. Es decir, para un usuario \( u \), se evalúa su pérdida hacia cada BS \( i \in \{0, 1, \dots, 6\} \) y se selecciona aquella que minimiza:  
+\[
+j = \arg\min_{i} L_{i,u}
+\]
+
+Este criterio garantiza la mejor calidad de señal posible para el usuario dentro de las celdas consideradas.
+
+\subsection*{Señal a interferencia (SIR) y tasa de transmisión}
+Una vez realizada la asociación, es importante evaluar la calidad de la comunicación en términos de la relación entre la potencia de la señal deseada y la potencia de las señales interferentes provenientes de otras BS que utilizan la misma frecuencia. Esta relación se conoce como SIR (Signal-to-Interference Ratio) y se calcula como:
+
+\[
+\text{SIR}_u = \frac{P_r^{(\text{serv})}}{\sum_{i=1}^{N} P_r^{(\text{interf})}}
+\]
+
+Donde: 
+\begin{itemize}
+    \item $P_r^{(\text{interf})}$ son las potencias recibidas desde las BS interferentes
+    \item $P_r^{(\text{serv})}$ es la potencia recibida desde la BS que atiende al usuario
+\end{itemize}
+
+El valor del SIR impacta directamente en la capacidad de transmisión. Utilizando la fórmula de Shannon, se puede estimar la tasa de transmisión máxima teórica que puede alcanzar un canal:
+
+\[
+C = B \cdot \log_2(1 + \text{SIR})
+\]
+
+donde \( C \) se mide en bits por segundo (bps), y \( B \) es el ancho de banda del canal en Hz.
+
+Este conjunto de herramientas permite modelar el comportamiento de una red celular en términos de cobertura, interferencia y capacidad, proporcionando una base sólida para el análisis y diseño de sistemas de telecomunicaciones.

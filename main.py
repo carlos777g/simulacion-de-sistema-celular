@@ -14,7 +14,7 @@ Gr_dB = 3
 alpha = 2.8
 sigma = 7
 altura_BS= 19.7
-numUsuarios = 1
+numUsuarios = 10
 radio_hex = 400
 apotema = radio_hex * (np.sqrt(3)/2)
 radio_circulo = np.sqrt((np.power(apotema*3,2))+(np.power(radio_hex/2,2)))
@@ -25,23 +25,7 @@ if __name__ == "__main__":
     # Lo siguiente es para calcular el radio del circulo en donde se generaran los usuarios uniformemente
     usuarios = generar_usuarios_uniformes_en_circulo(numUsuarios, radio_circulo)
 
-    # Graficamos todo
-    fig, ax = plt.subplots()
-    ax.set_aspect('equal')
 
-    for cx, cy in centros_celdas:
-        x, y = obtener_vertices_hexagono(cx, cy, radio_hex)
-        ax.plot(x, y, 'k')
-        ax.fill(x, y, alpha=0.2)
-
-    graficar_usuarios(ax, usuarios)
-
-    ax.set_title("Usuarios distribuidos uniformemente alrededor de la malla hexagonal")
-    ax.legend()
-    ax.grid(True)
-    plt.xlabel("X")
-    plt.ylabel("Y")
-    plt.show(block=False)
     # print(usuarios)
     # print("Centros de las celdas:", centros_celdas)
 
@@ -64,4 +48,28 @@ if __name__ == "__main__":
     # print("Potencias:", matriz_potencias)
     # Cada entrada de matriz_potencias[i] es una lista con las potencias recibidas
     # del usuario i desde cada BS
+
+    asignaciones = []  # Lista de índices de BS para cada usuario
+
+    for potencias_usuario in matriz_potencias:
+        mejor_idx = np.argmax([bs["Pr_log"] for bs in potencias_usuario])
+        asignaciones.append(mejor_idx)
+
+    # Graficamos todo
+    fig, ax = plt.subplots()
+    ax.set_aspect('equal')
+
+    for idx, (cx, cy) in enumerate(centros_celdas):
+        x, y = obtener_vertices_hexagono(cx, cy, radio_hex)
+        ax.plot(x, y, 'k')
+        ax.fill(x, y, alpha=0.2)
+        ax.text(cx, cy, f"BS {idx+1}", ha='center', va='center', fontsize=9, color='blue', fontweight='bold')
+    graficar_usuarios(ax, usuarios)
+
+    ax.set_title("Usuarios distribuidos uniformemente alrededor de la malla hexagonal")
+    ax.legend()
+    ax.grid(True)
+    plt.xlabel("X")
+    plt.ylabel("Y")
+    plt.show(block=False)
     input("Presiona Enter para cerrar la ventana...")

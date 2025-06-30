@@ -5,6 +5,7 @@ from funciones.hexagonos.graficar_hexagonos import graficar_malla_hexagonal, obt
 from funciones.usuarios.generar_usuarios import generar_usuarios_uniformes_en_circulo, graficar_usuarios
 from funciones.propagacion.calcular_distancias import calcular_distancias_reales
 from funciones.propagacion.modelo_lognormal import model_lognormal
+from funciones.propagacion.calcular_sir import calcular_sir_por_usuario
 
 # Parámetros globales
 FREQ_MHZ = 1935
@@ -56,6 +57,13 @@ if __name__ == "__main__":
         asignaciones.append(mejor_idx)
     
     print("Asignaciones", asignaciones)
+
+    # Calcular la SIR de cada usuario:
+    sirs = calcular_sir_por_usuario(matriz_potencias, asignaciones)
+
+    # Ejemplo de impresión
+    for i, sir_db in enumerate(sirs):
+        print(f"Usuario {i+1}: SIR = {sir_db:.2f} dB")
 
     # Graficamos todo
     fig, ax = plt.subplots()

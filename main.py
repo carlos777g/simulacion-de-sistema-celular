@@ -6,6 +6,7 @@ from funciones.usuarios.generar_usuarios import generar_usuarios_uniformes_en_ci
 from funciones.propagacion.calcular_distancias import calcular_distancias_reales
 from funciones.propagacion.modelo_lognormal import model_lognormal
 from funciones.propagacion.calcular_sir import calcular_sir_por_usuario
+from funciones.propagacion.asociar_cqi import asociar_cqi_y_tasa
 
 # Parámetros globales
 FREQ_MHZ = 1935
@@ -19,6 +20,7 @@ numUsuarios = 10
 radio_hex = 400
 apotema = radio_hex * (np.sqrt(3)/2)
 radio_circulo = np.sqrt((np.power(apotema*3,2))+(np.power(radio_hex/2,2)))
+ancho_banda_mhz = 0.18
 
 if __name__ == "__main__":
     
@@ -61,11 +63,20 @@ if __name__ == "__main__":
     # Calcular la SIR de cada usuario:
     sirs = calcular_sir_por_usuario(matriz_potencias, asignaciones)
 
-    # Ejemplo de impresión
+    # Imprimir SIR
     for i, sir_db in enumerate(sirs):
         print(f"Usuario {i+1}: SIR = {sir_db:.2f} dB")
+    
+    # Asociar cqi
+    resultados_cqi = asociar_cqi_y_tasa(sirs, ancho_banda_mhz)
 
-    # Graficamos todo
+    for i, res in enumerate(resultados_cqi):
+        print(f"Usuario {i+1}: SIR = {res['SIR_dB']:.2f} dB, "
+            f"CQI = {res['CQI']}, "
+            f"Eficiencia = {res['eficiencia']:.3f} bits/Hz, "
+              f"Tasa = {res['tasa_bps'] / 1e6:.2f} Mbps")
+    
+    # Graficando celdas y usuarios
     fig, ax = plt.subplots()
     ax.set_aspect('equal')
 

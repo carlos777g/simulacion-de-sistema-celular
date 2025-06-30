@@ -1,0 +1,15 @@
+cqi_table = [
+    {"CQI": 1, "SIR_dB": -6.7,  "bits": 2, "code_rate": 0.076},
+    {"CQI": 2, "SIR_dB": -4.7,  "bits": 2, "code_rate": 0.12},
+    {"CQI": 3, "SIR_dB": -2.3,  "bits": 2, "code_rate": 0.19},
+    {"CQI": 4, "SIR_dB": 0.2,   "bits": 2, "code_rate": 0.3},
+    {"CQI": 5, "SIR_dB": 2.4,   "bits": 2, "code_rate": 0.44},
+    {"CQI": 6, "SIR_dB": 4.3,   "bits": 2, "code_rate": 0.59},
+    {"CQI": 7, "SIR_dB": 5.9,   "bits": 4, "code_rate": 0.37},
+    {"CQI": 8, "SIR_dB": 8.1,   "bits": 4, "code_rate": 0.48},
+    {"CQI": 9, "SIR_dB": 10.3,  "bits": 4, "code_rate": 0.6},
+    {"CQI": 10,"SIR_dB": 11.7,  "bits": 6, "code_rate": 0.45},
+    {"CQI": 11,"SIR_dB": 14.1,  "bits": 6, "code_rate": 0.55},
+    {"CQI": 12,"SIR_dB": 16.3,  "bits": 6, "code_rate": 0.65},
+    {"CQI": 15,"SIR_dB": 22.7,  "bits": 6, "code_rate": 0.93},
+]

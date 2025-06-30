@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from funciones.hexagonos.graficar_hexagonos import graficar_malla_hexagonal, obtener_vertices_hexagono
+from funciones.hexagonos.graficar_hexagonos import graficar_malla_hexagonal, obtener_vertices_hexagono, coordenadas_centros_k3
 from funciones.usuarios.generar_usuarios import generar_usuarios_uniformes_en_circulo, graficar_usuarios
 from funciones.propagacion.calcular_distancias import calcular_distancias_reales
 from funciones.propagacion.modelo_lognormal import model_lognormal
@@ -24,7 +24,9 @@ ancho_banda_mhz = 0.18
 
 if __name__ == "__main__":
     
-    centros_celdas = graficar_malla_hexagonal(radio_hex)
+    # centros_celdas = graficar_malla_hexagonal(radio_hex)
+    centros_celdas = coordenadas_centros_k3(radio_hex)
+    print("CENTROS:", centros_celdas)
     # Lo siguiente es para calcular el radio del circulo en donde se generaran los usuarios uniformemente
     usuarios = generar_usuarios_uniformes_en_circulo(numUsuarios, radio_circulo)
 

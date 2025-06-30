@@ -44,10 +44,10 @@ def coordenadas_centros_k3(radio):
     es decir, separadas 3*R en 6 direcciones (flat-top).
     """
     R = radio
-    D = 3 * R  # Separación entre BS reutilizadas
+    D = 1.739 * R  # Separación entre BS reutilizadas
 
     # Direcciones flat-top (ángulos a 60°)
-    angulos = np.radians([0, 60, 120, 180, 240, 300])
+    angulos = np.radians([30, 90, 150, 210, 270, 330])
     centros = [(0, 0)]  # Centro principal
 
     for ang in angulos:

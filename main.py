@@ -43,12 +43,11 @@ if __name__ == "__main__":
     # Para cada usuario, obtener la pérdida con cada BS
     matriz_potencias = []
 
-    for distancias_usuario in calcular_distancias_reales(usuarios, centros_celdas, altura_bs=15):
+    for distancias_usuario in calcular_distancias_reales(usuarios, centros_celdas, altura_BS):
         # distancias_usuario = lista de 7 dicts (una por BS)
         potencias = model_lognormal(distancias_usuario, Pt_dBm, Gt_dB, Gr_dB, alpha, sigma)
         matriz_potencias.append(potencias)
 
-    # ...código existente...
     for idx_usuario, potencias_usuario in enumerate(matriz_potencias):
         print(f"\nUsuario {idx_usuario+1}:")
         for idx_bs, datos_bs in enumerate(potencias_usuario):

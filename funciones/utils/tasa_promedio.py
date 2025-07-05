@@ -1,25 +1,23 @@
-# funciones/calculo/tasa_promedio.py
-
 def calcular_tasa_promedio_cqi(resultados_cqi, ancho_banda_hz):
     """
-    Calcula la tasa promedio del sistema en bits/s según los resultados CQI.
+    Calcula la tasa promedio del sistema en Mbps con base en la eficiencia espectral promedio
+    y el ancho de banda total.
 
     Parámetros:
-    - resultados_cqi: lista de dicts, cada uno con clave 'CQI' y 'eficiencia' (bits/Hz).
-      Esta es la salida de asociar_cqi_y_tasa().
-    - ancho_banda_hz: ancho de banda total en Hz (p.ej. 4500 o 1500).
+    - resultados_cqi: lista de dicts, cada uno con la clave "eficiencia"
+    - ancho_banda_hz: ancho de banda en Hz
 
     Retorna:
-    - tasa_promedio_bps: float con la tasa promedio en bits/s.
+    - Tasa promedio en Mbps (float)
     """
     N = len(resultados_cqi)
     if N == 0:
-        return 0.0
+        return 0.0  # evitar división por cero
 
-    # sumamos E_i para cada usuario
-    suma_ef = sum(res["eficiencia"] for res in resultados_cqi)
-    # promedio de eficiencia espectral
-    ef_promedio = suma_ef / N
+    eficiencia_total = sum(res["eficiencia"] for res in resultados_cqi)
+    eficiencia_promedio = eficiencia_total / N
 
-    # R = BW * ef_promedio
-    return ancho_banda_hz * ef_promedio
+    R_bps = ancho_banda_hz * eficiencia_promedio
+    R_mbps = R_bps / 1e6
+
+    return R_mbps

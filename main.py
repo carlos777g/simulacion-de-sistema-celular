@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import json
-
+from rich import print
+from rich.table import Table
 
 from funciones.hexagonos.graficar_hexagonos import graficar_malla_hexagonal, obtener_vertices_hexagono
 from funciones.usuarios.generar_usuarios import generar_usuarios_uniformes_en_circulo, graficar_usuarios
@@ -125,8 +126,8 @@ if __name__ == "__main__":
 
     # Tasa promedio (R):
     # para k=1
-    R_k1 = calcular_tasa_promedio_cqi(resultados_cqi, ancho_banda_hz=4500)
-    print(f"Tasa promedio (k=1, BW=4500 Hz): {R_k1:.2f} bps")
+    R_k1 = calcular_tasa_promedio_cqi(resultados_cqi, ancho_banda_hz=4500e3)
+    print(f"Tasa promedio (k=1, BW=4500 kHz): {R_k1:.2f} Mbps")
     # Graficando celdas y usuarios
     fig, ax = plt.subplots()
     ax.set_aspect('equal')

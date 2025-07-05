@@ -46,14 +46,13 @@ if __name__ == "__main__":
         potencias = model_lognormal(distancias_usuario, Pt_dBm, Gt_dB, Gr_dB, alpha, sigma)
         matriz_potencias.append(potencias)
 
-    # ...código existente...
-    for idx_usuario, potencias_usuario in enumerate(matriz_potencias):
-        print(f"\nUsuario {idx_usuario+1}:")
-        for idx_bs, datos_bs in enumerate(potencias_usuario):
-            print(f"  BS {idx_bs+1}: distancia={datos_bs['distance']:.2f} m, "
-                f"pérdida={datos_bs['loss_d']:.2f} dB, "
-                f"shadowing={datos_bs['shadowing']:.2f} dB, "
-                f"Pr={datos_bs['Pr_log']:.2f} dBm")
+    # for idx_usuario, potencias_usuario in enumerate(matriz_potencias):
+    #     print(f"\nUsuario {idx_usuario+1}:")
+    #     for idx_bs, datos_bs in enumerate(potencias_usuario):
+    #         print(f"  BS {idx_bs+1}: distancia={datos_bs['distance']:.2f} m, "
+    #             f"pérdida={datos_bs['loss_d']:.2f} dB, "
+    #             f"shadowing={datos_bs['shadowing']:.2f} dB, "
+    #             f"Pr={datos_bs['Pr_log']:.2f} dBm")
     # print("Potencias:", matriz_potencias)
     # Cada entrada de matriz_potencias[i] es una lista con las potencias recibidas
     # del usuario i desde cada BS
@@ -64,23 +63,23 @@ if __name__ == "__main__":
         mejor_idx = np.argmin([bs["loss_d"] for bs in potencias_usuario])
         asignaciones.append(mejor_idx)
     
-    print("Asignaciones", asignaciones)
+    # print("Asignaciones", asignaciones)
 
     # Calcular la SIR de cada usuario:
     sirs = calcular_sir_por_usuario(matriz_potencias, asignaciones)
 
     # Imprimir SIR
-    for i, sir_db in enumerate(sirs):
-        print(f"Usuario {i+1}: SIR = {sir_db:.2f} dB")
+    # for i, sir_db in enumerate(sirs):
+    #     print(f"Usuario {i+1}: SIR = {sir_db:.2f} dB")
     
     # Asociar cqi
     resultados_cqi = asociar_cqi_y_tasa(sirs, ancho_banda_mhz)
 
-    for i, res in enumerate(resultados_cqi):
-        print(f"Usuario {i+1}: SIR = {res['SIR_dB']:.2f} dB, "
-            f"CQI = {res['CQI']}, "
-            f"Eficiencia espectral= {res['eficiencia']:.3f} "
-              f"Tasa = {res['tasa_bps'] / 1e6:.2f} Mbps")
+    # for i, res in enumerate(resultados_cqi):
+    #     print(f"Usuario {i+1}: SIR = {res['SIR_dB']:.2f} dB, "
+    #         f"CQI = {res['CQI']}, "
+    #         f"Eficiencia espectral= {res['eficiencia']:.3f} "
+    #           f"Tasa = {res['tasa_bps'] / 1e6:.2f} Mbps")
     
     # Guardar en JSON
     # Extraer solo los usuarios asociados a BS1 (índice 0)

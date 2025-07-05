@@ -37,8 +37,12 @@ if __name__ == "__main__":
     
     centros_celdas = graficar_malla_hexagonal(radio_hex)
     # Lo siguiente es para calcular el radio del circulo en donde se generaran los usuarios uniformemente
-    usuarios = generar_usuarios_uniformes_en_circulo(numUsuarios, radio_circulo)
+    # usuarios = generar_usuarios_uniformes_en_circulo(numUsuarios, radio_circulo)
+    with open("usuarios_bs1_k1.json", "r") as f:
+        usuarios_bs1 = json.load(f)
 
+    # Convertimos los datos a solo coordenadas
+    usuarios = [(u["x"], u["y"]) for u in usuarios_bs1]
 
     # print(usuarios)
     # print("Centros de las celdas:", centros_celdas)

@@ -29,4 +29,4 @@ def graficar_histograma_cqi(resultados_cqi):
     plt.title("Distribución de CQI asignado a los usuarios")
     plt.grid(axis='y', linestyle='--', alpha=0.6)
     plt.tight_layout()
-    plt.show()
+    plt.show(block=False)

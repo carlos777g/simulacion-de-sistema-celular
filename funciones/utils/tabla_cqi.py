@@ -11,5 +11,7 @@ cqi_table = [
     {"CQI": 10,"SIR_dB": 11.7,  "bits": 6, "code_rate": 0.45},
     {"CQI": 11,"SIR_dB": 14.1,  "bits": 6, "code_rate": 0.55},
     {"CQI": 12,"SIR_dB": 16.3,  "bits": 6, "code_rate": 0.65},
+    {"CQI": 13,"SIR_dB": 18.7,  "bits": 6, "code_rate": 0.75},
+    {"CQI": 14,"SIR_dB": 21,  "bits": 6, "code_rate": 0.85},
     {"CQI": 15,"SIR_dB": 22.7,  "bits": 6, "code_rate": 0.93},
 ]

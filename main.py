@@ -10,6 +10,8 @@ from funciones.propagacion.modelo_lognormal import model_lognormal
 from funciones.propagacion.calcular_sir import calcular_sir_por_usuario
 from funciones.propagacion.asociar_cqi import asociar_cqi_y_tasa
 
+from funciones.visualizacion.histograma import graficar_histograma_cqi
+
 from funciones.visualizacion.tablas import (
     tabla_resumen_usuarios,
     mostrar_coordenadas_bs,
@@ -84,27 +86,27 @@ if __name__ == "__main__":
     #         f"Eficiencia espectral= {res['eficiencia']:.3f} "
     #           f"Tasa = {res['tasa_bps'] / 1e6:.2f} Mbps")
     
-    # Guardar en JSON
-    # Extraer solo los usuarios asociados a BS1 (índice 0)
-    usuarios_bs1 = []
-    for i, bs in enumerate(asignaciones):
-        if bs == 0:  # BS1 tiene índice 0
-            datos = {
-                "usuario_id": i + 1,
-                "x": usuarios[i][0],
-                "y": usuarios[i][1],
-                "loss_d": matriz_potencias[i][0]["loss_d"],
-                "shadowing": matriz_potencias[i][0]["shadowing"],
-                "Pr_log": matriz_potencias[i][0]["Pr_log"],
-                "SIR_dB": sirs[i]
-            }
-            usuarios_bs1.append(datos)
+    # # Guardar en JSON
+    # # Extraer solo los usuarios asociados a BS1 (índice 0)
+    # usuarios_bs1 = []
+    # for i, bs in enumerate(asignaciones):
+    #     if bs == 0:  # BS1 tiene índice 0
+    #         datos = {
+    #             "usuario_id": i + 1,
+    #             "x": usuarios[i][0],
+    #             "y": usuarios[i][1],
+    #             "loss_d": matriz_potencias[i][0]["loss_d"],
+    #             "shadowing": matriz_potencias[i][0]["shadowing"],
+    #             "Pr_log": matriz_potencias[i][0]["Pr_log"],
+    #             "SIR_dB": sirs[i]
+    #         }
+    #         usuarios_bs1.append(datos)
 
-    # Guardar en JSON
-    with open("usuarios_bs1_k1.json", "w") as f:
-        json.dump(usuarios_bs1, f, indent=4)
+    # # Guardar en JSON
+    # with open("usuarios_bs1_k1.json", "w") as f:
+    #     json.dump(usuarios_bs1, f, indent=4)
 
-    print(f"\nSe guardaron {len(usuarios_bs1)} usuarios asociados a BS1 en 'usuarios_bs1_k1.json'")
+    # print(f"\nSe guardaron {len(usuarios_bs1)} usuarios asociados a BS1 en 'usuarios_bs1_k1.json'")
 
     # Tablas:
     tabla_resumen_usuarios(usuarios, matriz_potencias, asignaciones, num_bs=len(centros_celdas), limite=10)
@@ -113,6 +115,10 @@ if __name__ == "__main__":
 
     # Mostrar tabla de usuarios asociados a BS 0
     mostrar_usuarios_bs0(usuarios, matriz_potencias, asignaciones, sirs, resultados_cqi)
+
+    #  histograma:
+    graficar_histograma_cqi(resultados_cqi)
+
     # Graficando celdas y usuarios
     fig, ax = plt.subplots()
     ax.set_aspect('equal')

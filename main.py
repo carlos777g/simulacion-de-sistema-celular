@@ -127,7 +127,7 @@ if __name__ == "__main__":
     # Tasa promedio (R):
     # para k=3
     R_k1 = calcular_tasa_promedio_cqi(resultados_cqi, ancho_banda_hz=1500)
-    print(f"Tasa promedio (k=1, BW=4500 Hz): {R_k1:.2f} bps")
+    print(f"Tasa promedio (k=1, BW=1500 Hz): {R_k1:.2f} bps")
 
     # Graficando celdas y usuarios
     fig, ax = plt.subplots()

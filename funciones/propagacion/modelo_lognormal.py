@@ -22,7 +22,7 @@ def model_lognormal(mobiles, Pt_dBm=43, Gt_dB=15, Gr_dB=0, alpha=3.5, sigma=6):
     Ld_log = 10 * alpha * np.log10(dist_km + 1e-6)  # evitamos log(0)
     Xsigma = np.random.randn(n) * sigma
     Pr = Pt_dBm + Gt_dB + Gr_dB - Ld_log - Xsigma
-
+    Ld_log += Xsigma
     return [
         {
             "distance": dist_m[i],

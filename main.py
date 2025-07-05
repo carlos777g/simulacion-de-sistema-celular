@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import json
+from rich import print
+from rich.table import Table
 
 from funciones.hexagonos.graficar_hexagonos import graficar_malla_hexagonal, obtener_vertices_hexagono
 from funciones.usuarios.generar_usuarios import generar_usuarios_uniformes_en_circulo, graficar_usuarios
@@ -8,6 +10,9 @@ from funciones.propagacion.calcular_distancias import calcular_distancias_reales
 from funciones.propagacion.modelo_lognormal import model_lognormal
 from funciones.propagacion.calcular_sir import calcular_sir_por_usuario
 from funciones.propagacion.asociar_cqi import asociar_cqi_y_tasa
+
+from funciones.visualizacion.tabla_2 import tabla_resumen_usuarios
+
 
 # Parámetros globales
 FREQ_MHZ = 1935
@@ -17,7 +22,7 @@ Gr_dB = 3
 alpha = 2.8
 sigma = 7
 altura_BS= 19.7
-numUsuarios = 400
+numUsuarios = 1500
 radio_hex = 400
 apotema = radio_hex * (np.sqrt(3)/2)
 radio_circulo = np.sqrt((np.power(apotema*3,2))+(np.power(radio_hex/2,2)))
@@ -99,6 +104,8 @@ if __name__ == "__main__":
 
     print(f"\nSe guardaron {len(usuarios_bs1)} usuarios asociados a BS1 en 'usuarios_bs1_k1.json'")
 
+    # Tablas:
+    tabla_resumen_usuarios(usuarios, matriz_potencias, asignaciones, num_bs=len(centros_celdas), limite=10)
 
     # Graficando celdas y usuarios
     fig, ax = plt.subplots()

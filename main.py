@@ -9,6 +9,7 @@ from funciones.propagacion.calcular_distancias import calcular_distancias_reales
 from funciones.propagacion.modelo_lognormal import model_lognormal
 from funciones.propagacion.calcular_sir import calcular_sir_por_usuario
 from funciones.propagacion.asociar_cqi import asociar_cqi_y_tasa
+from funciones.utils.tasa_promedio import calcular_tasa_promedio_cqi
 
 from funciones.visualizacion.histograma import graficar_histograma_cqi
 
@@ -20,7 +21,6 @@ from funciones.visualizacion.tablas import (
 
 
 # Parámetros globales
-FREQ_MHZ = 1935
 Pt_dBm = 10 * np.log10(10) + 30  # 10 W
 Gt_dB = 9
 Gr_dB = 3
@@ -123,6 +123,10 @@ if __name__ == "__main__":
     #  histograma:
     graficar_histograma_cqi(resultados_cqi)
 
+    # Tasa promedio (R):
+    # para k=1
+    R_k1 = calcular_tasa_promedio_cqi(resultados_cqi, ancho_banda_hz=4500)
+    print(f"Tasa promedio (k=1, BW=4500 Hz): {R_k1:.2f} bps")
     # Graficando celdas y usuarios
     fig, ax = plt.subplots()
     ax.set_aspect('equal')

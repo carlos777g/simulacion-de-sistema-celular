@@ -125,8 +125,8 @@ if __name__ == "__main__":
     graficar_histograma_cqi(resultados_cqi)
 
     # Tasa promedio (R):
-    # para k=1, ancho_banda_mhz=4.5 → 4.5e6 Hz
-    R_k1 = calcular_tasa_promedio_cqi(resultados_cqi, ancho_banda_hz=4500)
+    # para k=3
+    R_k1 = calcular_tasa_promedio_cqi(resultados_cqi, ancho_banda_hz=1500)
     print(f"Tasa promedio (k=1, BW=4500 Hz): {R_k1:.2f} bps")
 
     # Graficando celdas y usuarios

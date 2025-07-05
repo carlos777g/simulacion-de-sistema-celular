@@ -11,6 +11,7 @@ from funciones.propagacion.modelo_lognormal import model_lognormal
 from funciones.propagacion.calcular_sir import calcular_sir_por_usuario
 from funciones.propagacion.asociar_cqi import asociar_cqi_y_tasa
 
+from funciones.visualizacion.histograma import graficar_histograma_cqi
 from funciones.visualizacion.tablas import (
     tabla_resumen_usuarios,
     mostrar_coordenadas_bs,
@@ -119,6 +120,10 @@ if __name__ == "__main__":
 
     # Mostrar tabla de usuarios asociados a BS 0
     mostrar_usuarios_bs0(usuarios, matriz_potencias, asignaciones, sirs, resultados_cqi)
+
+    # histograma:
+    graficar_histograma_cqi(resultados_cqi)
+
     # Graficando celdas y usuarios
     fig, ax = plt.subplots()
     ax.set_aspect('equal')

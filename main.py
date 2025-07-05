@@ -38,9 +38,12 @@ if __name__ == "__main__":
     centros_celdas = coordenadas_centros_k3(radio_hex)
 
     # Lo siguiente es para calcular el radio del circulo en donde se generaran los usuarios uniformemente
-    usuarios = generar_usuarios_uniformes_en_circulo(numUsuarios, radio_circulo)
+    # usuarios = generar_usuarios_uniformes_en_circulo(numUsuarios, radio_circulo)
+    with open("usuarios_bs1_k1.json", "r") as f:
+        usuarios_bs1 = json.load(f)
 
-
+    # Convertimos los datos a solo coordenadas
+    usuarios = [(u["x"], u["y"]) for u in usuarios_bs1]
     # print(usuarios)
     # print("Centros de las celdas:", centros_celdas)
 
@@ -89,25 +92,25 @@ if __name__ == "__main__":
     
     # Guardar en JSON
     # Extraer solo los usuarios asociados a BS1 (índice 0)
-    usuarios_bs1 = []
-    for i, bs in enumerate(asignaciones):
-        if bs == 0:  # BS1 tiene índice 0
-            datos = {
-                "usuario_id": i + 1,
-                "x": usuarios[i][0],
-                "y": usuarios[i][1],
-                "loss_d": matriz_potencias[i][0]["loss_d"],
-                "shadowing": matriz_potencias[i][0]["shadowing"],
-                "Pr_log": matriz_potencias[i][0]["Pr_log"],
-                "SIR_dB": sirs[i]
-            }
-            usuarios_bs1.append(datos)
+    # usuarios_bs1 = []
+    # for i, bs in enumerate(asignaciones):
+    #     if bs == 0:  # BS1 tiene índice 0
+    #         datos = {
+    #             "usuario_id": i + 1,
+    #             "x": usuarios[i][0],
+    #             "y": usuarios[i][1],
+    #             "loss_d": matriz_potencias[i][0]["loss_d"],
+    #             "shadowing": matriz_potencias[i][0]["shadowing"],
+    #             "Pr_log": matriz_potencias[i][0]["Pr_log"],
+    #             "SIR_dB": sirs[i]
+    #         }
+    #         usuarios_bs1.append(datos)
 
-    # Guardar en JSON
-    with open("usuarios_bs1_k1.json", "w") as f:
-        json.dump(usuarios_bs1, f, indent=4)
+    # # Guardar en JSON
+    # with open("usuarios_bs1_k1.json", "w") as f:
+    #     json.dump(usuarios_bs1, f, indent=4)
 
-    print(f"\nSe guardaron {len(usuarios_bs1)} usuarios asociados a BS1 en 'usuarios_bs1_k1.json'")
+    # print(f"\nSe guardaron {len(usuarios_bs1)} usuarios asociados a BS1 en 'usuarios_bs1_k1.json'")
 
     # Tablas:
     tabla_resumen_usuarios(usuarios, matriz_potencias, asignaciones, num_bs=len(centros_celdas), limite=10)

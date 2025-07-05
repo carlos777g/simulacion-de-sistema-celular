@@ -11,7 +11,11 @@ from funciones.propagacion.modelo_lognormal import model_lognormal
 from funciones.propagacion.calcular_sir import calcular_sir_por_usuario
 from funciones.propagacion.asociar_cqi import asociar_cqi_y_tasa
 
-from funciones.visualizacion.tabla_2 import tabla_resumen_usuarios
+from funciones.visualizacion.tablas import (
+    tabla_resumen_usuarios,
+    mostrar_coordenadas_bs,
+    mostrar_usuarios_bs0,
+)
 
 
 # Parámetros globales
@@ -105,7 +109,11 @@ if __name__ == "__main__":
 
     # Tablas:
     tabla_resumen_usuarios(usuarios, matriz_potencias, asignaciones, num_bs=len(centros_celdas), limite=10)
+    # Mostrar coordenadas de BS
+    mostrar_coordenadas_bs(centros_celdas)
 
+    # Mostrar tabla de usuarios asociados a BS 0
+    mostrar_usuarios_bs0(usuarios, matriz_potencias, asignaciones, sirs, resultados_cqi)
     # Graficando celdas y usuarios
     fig, ax = plt.subplots()
     ax.set_aspect('equal')

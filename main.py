@@ -1,8 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import json
-from rich import print
-from rich.table import Table
+
 
 from funciones.hexagonos.graficar_hexagonos import graficar_malla_hexagonal, obtener_vertices_hexagono
 from funciones.usuarios.generar_usuarios import generar_usuarios_uniformes_en_circulo, graficar_usuarios

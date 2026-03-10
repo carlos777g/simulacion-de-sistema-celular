@@ -20,3 +20,5 @@ main-blx.bib
 __pycache__
 
 #usuarios_bs1_k1.json
+/env/
+.env
